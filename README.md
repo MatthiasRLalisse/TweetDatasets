@@ -1,4 +1,4 @@
-``TweetDatasets`` provides a set of general-purpose utility classes and functions for storing and processing Twitter data. It is written so as to be object-oriented programming-friendly, and to work particularly well with embeddings and other dataset attributes useful in machine learning.
+``TweetDatasets`` provides a set of general-purpose utility classes and functions for storing and processing Twitter data. It is written so as to be object-oriented programming-friendly, and to work particularly well with embeddings and other machine learning dataset attributes.
 
 Usage
 ===========
@@ -48,7 +48,7 @@ As an alternative to a ``.csv`` or ``pandas`` input, you can initialize with cus
 ...                    RandomAttr=np.random.randn(3)
 ...                    )
 >>> 
->>> print(my_tweets[1]) #assigned attributes also appear in dir(my_tweets)
+>>> print(my_tweets[1]) #assigned attributes also appear in dir(my_tweets[i])
 User:		MatthiasLalisse 
 Datetime:	2021-10-29 19:57:08.756721
 Text:		@jack Thanks for all the tweets
@@ -64,13 +64,23 @@ You can get a given attribute for all tweets by referencing the entire dataset. 
 >>> print(my_tweets[2].SentimentLabel)
 Neg
 ~~~
-The ``TweetDataset`` class supports slicing and indexing with integer arrays.
+The ``TweetDataset`` class supports slicing and indexing with integer arrays, as well as (in-place) addition, which concatenates the datasets.
 ~~~
 >>> len(fox_tweets[25:115])
 90
 >>> random_sample = np.random.choice(500, size=90, replace=False)
 >>> len(fox_tweets[random_sample])
 90
+>>> 
+>>> ### Addition operators
+>>> print(len(fox_tweets + my_tweets))
+503
+>>> fox_tweets += my_tweets	#in-place add
+>>> print(fox_tweets[-1])
+User:		MatthiasLalisse 
+Datetime:	2021-10-30 15:01:19.002028
+Text:		@Sen_JoeManchin What's the hold-up?
+Attributes:	[Username, Text, Datetime, Likes, RandomAttr] 
 ~~~
 To filter the dataset with a boolean function, use the ``apply_filter`` method.
 ~~~
@@ -87,6 +97,8 @@ Working with Embeddings
 =============================
 These data structures were primarily built with vectorization in mind. The sample in ``fox_tweets_sample.csv`` includes tweet vectors embedded using [BERTweet](https://github.com/VinAIResearch/BERTweet).
 ~~~
+>>> csv_filename = 'fox_tweets_sample.csv'
+>>> fox_tweets = tweets.TweetDataset(_csv_fname=csv_filename)
 >>> print(fox_tweets.Embedding)
 [[ 0.224  -0.1174  0.0786 ... -0.0399 -0.1419 -0.1405]
  [ 0.3698 -0.1038 -0.0017 ... -0.0494 -0.1326 -0.086 ]
@@ -131,5 +143,4 @@ To save a model, use the ``save`` method and ``load`` function, which are just w
 >>> trump_tweets.save('trump_tweets.tds')
 >>> my_dataset = tweets.load('trump_tweets.tds')
 ~~~
-
 
