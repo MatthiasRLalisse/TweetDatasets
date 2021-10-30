@@ -31,7 +31,7 @@ The ``print`` function assumes the tweet has ``Username, Datetime,`` and ``Text`
 User:		FoxNews 
 Datetime:	2021-09-16 02:20:00+00:00
 Text:		Bongino: If Milley warned China, 'he should be court-martialed'[EOL]https://t.co/iCM38pe5JI
-All attributes: [Embedding, Username, Datetime, Text, Links]
+Attributes:	[Embedding, Username, Datetime, Text, Links] 
 ~~~
 As an alternative to a ``.csv`` or ``pandas`` input, you can initialize with custom keyword arguments. The input format is a set of keyword args whose values are lists (or other iterable) of attribute values, one for each tweet. The keyword becomes the attribute name.
 ~~~
