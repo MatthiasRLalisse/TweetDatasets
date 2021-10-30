@@ -1,4 +1,4 @@
-``TweetDatasets`` provides a set of general-purpose utility classes and functions for storing and processing Twitter data. It is written so as to be object-oriented programming-friendly, and to work particularly well with embeddings and other machine learning dataset attributes.
+``TweetDatasets`` provides a set of general-purpose utility classes and functions for storing and processing Twitter data. It is written so as to be object-oriented programming-friendly, and to work particularly well with embeddings and other attributes useful in machine learning.
 
 Usage
 ===========
