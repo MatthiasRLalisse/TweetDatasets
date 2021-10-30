@@ -143,4 +143,17 @@ To save a model, use the ``save`` method and ``load`` function, which are just w
 >>> trump_tweets.save('trump_tweets.tds')
 >>> my_dataset = tweets.load('trump_tweets.tds')
 ~~~
+You can also export the data as a dataframe:
+~~~
+>>> fox_tweets.to_df().head()
+                    Datetime  ...                                          Embedding
+0  2021-09-16 06:01:00+00:00  ...  [0.22404042, -0.11738633, 0.07860252, -0.28203...
+1  2021-09-16 05:40:00+00:00  ...  [0.369846, -0.10383854, -0.0016934995, -0.2489...
+2  2021-09-16 05:20:00+00:00  ...  [0.32626405, -0.072715014, -0.024414035, -0.27...
+3  2021-09-16 05:00:00+00:00  ...  [0.3039878, -0.07812772, -0.02233928, -0.13152...
+4  2021-09-16 04:20:00+00:00  ...  [0.18207626, -0.047351748, 0.05784236, -0.2048...
+
+[5 rows x 8 columns]
+~~~
+
 
